@@ -1,0 +1,93 @@
+body { 
+  padding-top: 150px !important;
+  background:black !important;
+ }
+
+@media screen and (max-width: 768px) {
+    h3 {
+        font-size:100%;
+    }
+}
+ 
+@media screen and (max-width: 480px) {
+    h3 {
+        font-size:115%
+    }
+}
+
+
+.navbar{
+  height:150px;
+  background-color:black;
+  color:white;
+
+}
+
+#logo{
+float:left;
+margin-top:24px;
+margin-right:10px;
+width:150px; 
+height:120px;
+
+}
+
+
+#mainContainer{
+
+}
+.chatContainer{
+  margin-bottom:10px;
+}
+#chatButton{
+  color:rgb(51, 51, 51);
+  top:5px;
+ }
+
+ #chatInput{
+  margin-bottom:10px;
+ }
+ 
+ .chatMessage{
+  border-radius: 5px;
+  padding-left: 10px;
+height:50px;
+background-color:rgba(50,50,50,0.75);
+color:white;
+border-bottom:1px solid black;
+ }
+.playerContainer{
+  background-color:grey;
+}
+
+.imageGrid > img {
+  float:left;
+  margin-right:25px;
+}
+.white{
+  color:white;
+}
+.thumbnail {
+  margin-bottom:7px;
+}
+
+
+.chatdiv{
+position: relative;
+top: 5px;
+}
+#CHATTOGGLE{
+  margin-bottom:10px;
+}
+#playButton,#pauseButton{
+  float:left;
+}
+
+#playTime{
+position: relative;
+top: 5px;
+}
+
+.controls{
+  margin-left:20px;
+}

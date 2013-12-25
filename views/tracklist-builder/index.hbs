@@ -1,0 +1,11 @@
+<div class="well">
+<input id="search" type="text" class="span3" id="typeahead" data-provide="typeahead"></input>
+</div>
+
+<script>
+
+$('#search').typeahead({
+  name: 'accounts',
+  local: ['timtrueman', 'JakeHarding', 'vskarich']
+});
+</script>

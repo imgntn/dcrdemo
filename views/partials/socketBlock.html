@@ -1,0 +1,20 @@
+<script>
+var socket = io.connect({'sync disconnect on unload': true});
+
+//public sockets
+socket.on('connect', function(data) {
+	// console.info('connected to global sockets')
+
+})
+
+socket.on('news', function(data) {
+	console.log(data);
+	socket.emit('my other event', {
+		my: 'data'
+	});
+
+});
+
+
+
+</script>

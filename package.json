@@ -1,0 +1,43 @@
+{
+  "name": "keyara",
+  "version": "0.0.1",
+  "description": "general app by james b. pollack",
+  "main": "app.js",
+  "engines": {
+    "node": "0.10.22",
+    "npm": "1.2.x"
+  },
+  "dependencies": {
+    "mongoose": "~3.8.1",
+    "underscore": "~1.5.2",
+    "newrelic": "~1.1.1",
+    "nodetime": "~0.8.14",
+    "facebook-node-sdk": "~0.2.0",
+    "twit": "~1.1.11",
+    "bcrypt": "~0.7.7",
+    "express3-handlebars": "~0.5.0",
+    "hbs": "~2.4.0",
+    "analytics-node": "~0.5.0",
+    "redis": "~0.9.2",
+    "connect-redis": "~1.4.6",
+    "mongoose-user": "0.0.1",
+    "instagram-node-lib": "~0.1.1",
+
+    "charlatan": "~0.1.8",
+    "node-uuid": "~1.4.1",
+    "express.io": "~1.1.13"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "testRunner.js"
+  },
+  "author": "james b. pollack",
+  "license": "All Rights Reserved, 2013",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/imgntn/keyara.git"
+  },
+  "bugs": {
+    "url": "https://github.com/imgntn/keyara/issues"
+  }
+}

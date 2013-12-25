@@ -1,0 +1,400 @@
+  <nav class="navbar  navbar-fixed-top" role="navigation">
+
+    <div>
+
+
+
+      <div class="container">
+        <div class="row">
+
+         <div class="col-md-4 ">
+          <img id="logo" src="images/drumcode.png"/>      
+        </div>
+        <div class="col-md-3 ">
+          <h3 id="trackTitle" >  Drumcode Radio 176</h3>
+        </div>
+
+        <div class="col-md-3">
+         <h3 id="trackArtist" >  with Adam Beyer</h3>
+       </div>
+
+       <div class="col-md-2 ">
+        <div class="white controls">
+          <h2>
+            <span id="playButton" class="glyphicon glyphicon-play white"></span>   
+            <span id="pauseButton" class="glyphicon glyphicon-pause white"></span>
+          </h2>
+          <span id="playTime"></span>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
+</div>
+
+<audio id='audioPlayer'>
+  <source src="https://s3-us-west-1.amazonaws.com/lessthan3/music/DCR176.mp3">
+  </audio>
+
+</div>
+</nav>
+
+<canvas id="backgroundCanvas" style="position:fixed; top:0;left:0;display:block" ></canvas>
+
+<div class="container" id="mainContainer">
+
+
+<div class="row">
+
+  <div class="col-md-4" id="CHAT">
+
+    <div class="chatSlug">
+    <h3>  <span id="chatButton" class="glyphicon glyphicon-comment"></span>  Chat // <span id="userCount"></span> <span id="listenerText">Listeners </span></h3>
+    </div>
+
+    <div class="chatContainer">
+        <input  id="chatInput" type="text" class="form-control" placeholder="Message"  maxlength="50">  
+    <div class="chatMessage"><div class="chatdiv"> <span class="chatUsername"></span><span class="chatText"></div></span></div>
+    <div class="chatMessage"><div class="chatdiv"> <span class="chatUsername"></span><span class="chatText"></div></span></div>
+    <div class="chatMessage"><div class="chatdiv"> <span class="chatUsername"></span><span class="chatText"></div></span></div>
+    <div class="chatMessage"><div class="chatdiv"> <span class="chatUsername"></span><span class="chatText"></div></span></div>
+    <div class="chatMessage"><div class="chatdiv"> <span class="chatUsername"></span><span class="chatText"></div></span></div>
+    <div class="chatMessage"><div class="chatdiv"> <span class="chatUsername"></span><span class="chatText"></div></span></div>
+    <div class="chatMessage"><div class="chatdiv"> <span class="chatUsername"></span><span class="chatText"></div></span></div>
+    <div class="chatMessage"><div class="chatdiv"> <span class="chatUsername"></span><span class="chatText"></div></span></div>
+
+    </div>
+
+ 
+
+  </div>
+
+<div class="col-md-4" id="CHATTOGGLE" style="display:none">
+<button>OPEN CHAT</button>
+</div>
+
+
+  <div class="col-md-8 imageGrid" id="IMAGES">
+    <div id="recentPhotosHolder"></div>
+  </div>
+</div>
+
+<script id="recentPhotos_hb" src="/templates/templates.js"></script>
+<script>
+Handlebars.registerHelper("debug", function(optionalValue) {
+  console.log("Current Context");
+  console.log("====================");
+  console.log(this);
+
+  if (optionalValue) {
+    console.log("Value");
+    console.log("====================");
+    console.log(optionalValue);
+  }
+});
+
+var App=Backbone.Model.extend({
+  initialize:function(){
+    this.set('photosInitialized',false);
+    this.recentPhotosView=null;
+    this.getRecentPhotos=null;
+  }
+
+})
+
+
+
+$( document ).ready(function() {
+ app=new App()
+
+ app.getRecentPhotos=function(whichtag){
+  $.ajax({
+    type: "GET",
+    dataType: "jsonp",
+    cache: false,
+    url: "https://api.instagram.com/v1/tags/"+whichtag+"/media/recent?client_id=1b7d22ce0d7440a0bd6c62b3294083b0",
+    success: function(data) {
+
+      var photoSlice=data.data.slice(0,12)
+      recentPhotos.reset(photoSlice)
+      app.recentPhotosView = new RecentPhotosView();
+
+    }
+  });
+}
+
+
+
+
+var MediaObject = Backbone.Model.extend({
+});
+
+var RecentPhotos = Backbone.Collection.extend({
+  model: MediaObject,
+  render:function(){
+
+  }
+});
+
+var RecentPhotosView=Backbone.View.extend({
+  el: $('#recentPhotosHolder'),
+  initialize:function(){
+    this.items=recentPhotos.toJSON();
+    this.render();
+  },
+  render:function(){
+    var js = recentPhotos.toJSON();
+
+    var html = Handlebars.templates["clientSide"](this.items);
+    $(this.el).html(html);
+  }
+})
+
+var recentPhotos=new RecentPhotos();
+
+if(app.get('photosInitialized')==false){
+  app.getRecentPhotos('drumcode')
+  app.set('photosInitialized',false);
+}
+
+
+var socket = io.connect();
+
+
+socket.on('show', function(data) {
+  console.log('SHOW:',data.show);
+  app.getRecentPhotos(data.show)
+});
+
+
+
+
+///chat stuff
+
+$("#chatInput").keyup(function (e) {
+    if (e.keyCode == 13 && $(this).val()!=="") {
+        console.log('enter pressed in chat')
+        // Do something
+var message=$(this).val()
+ $(this).val('');
+socket.emit('sendChat', {
+
+        chat: message
+  });
+    }
+});
+
+ oldMessages=[];
+
+
+socket.on('updateChat', function(data,username) {
+  console.log('message:',data,username);
+    oldMessages.push([_.uniqueId(),data.chat,username])
+ sortedMessages=_.sortBy(oldMessages,function(item){return parseInt(item[1])}).reverse()
+for (var i=0;i<sortedMessages.length;i++){
+  if(sortedMessages[i]){
+      $('.chatText').eq(i).text(sortedMessages[i][1])
+       $('.chatUsername').eq(i).text(sortedMessages[i][2]+": ")
+  }
+
+} 
+
+
+
+
+});
+
+socket.on('userCount', function(data) {
+  console.log('userCount:',data);
+  $('#userCount').text(data)
+
+
+});
+
+
+
+//quick and dirty.  really dirty :(   would be nice to build an admin interface: tracklist-builder
+
+  var Track=Backbone.Model.extend({
+    initialize:function(attributes){
+
+      this.set('title',attributes.title);
+      this.set('artist',attributes.artist);
+      this.set('label',attributes.label);
+      this.set('remix',attributes.remix||"");
+      this.set('timeIN',attributes.timeIN);
+      this.set('timeOUT',attributes.timeOUT);
+      this.set('link',attributes.link||"");
+
+    },
+
+  })
+
+
+
+//change track headings...
+
+  var TrackList=Backbone.Collection.extend({
+    model:Track
+  })
+
+  var trackList=new TrackList();
+
+  var track=new Track({
+    title:'AWG50',
+    artist:'Raphael Dincsoy & Pierre Deutschmann',
+    label:'H-PRODUCTIONS',
+    timeIN:30,
+    timeOUT:300
+  })
+
+  trackList.add(track)
+
+  var track=new Track({
+    title:'Falling Down',
+    artist:'Andrei Morant',
+    label:'COPE',
+    timeIN:300,
+    timeOUT:600,
+  })
+  trackList.add(track)
+
+  var track=new Track({
+    title:'Accelerate',
+    artist:'Frankyeffe',
+    remix:'Ant Prescott',
+    label:'COPE',
+    timeIN:600,
+    timeOUT:900
+  })
+  trackList.add(track)
+
+  var track=new Track({
+    title:'Paid Out',
+    artist:'Gary Beck',
+    remix:'Mike Dehnert',
+    label:'BEK',
+    timeIN:900,
+    timeOUT:1200
+  })
+  trackList.add(track)
+
+
+  var track=new Track({
+    title:'Paranco',
+    artist:'Alex Dolby ',
+    label:'AFFEKT',
+    timeIN:1200,
+    timeOUT:1500
+  })
+  trackList.add(track)
+
+  var track=new Track({
+    title:'Companion',
+    artist:'Andrei Morant',
+    label:'SCOPE',
+    timeIN:1500,
+    timeOUT:1800
+  })
+  trackList.add(track)
+
+  var track=new Track({
+    title:'Companion',
+    artist:'Stefano Noferini',
+    label:'DEEPERFEKT',
+    timeIN:1800,
+    timeOUT:2100
+  })
+  trackList.add(track)
+
+  var track=new Track({
+    title:'Thoughtcrime',
+    artist:'Rodhad',
+    label:'DYSTOPIAN',
+    timeIN:2100,
+    timeOUT:2400
+  })
+  trackList.add(track)
+
+  var track=new Track({
+    title:'Last Anthem',
+    artist:'Conforce',
+    label:'DELSIN',
+    timeIN:2400,
+    timeOUT:2700
+  })
+  trackList.add(track)
+
+  var track=new Track({
+    title:'Braintrapped',
+    artist:'On/Off',
+    label:'ONOFFICIAL',
+    timeIN:2700,
+    timeOUT:3000
+  })
+  trackList.add(track)
+
+  var track=new Track({
+    title:'Acid Dik',
+    artist:'Mark Broom',
+    label:'POWER VACUUM',
+    timeIN:3000,
+    timeOUT:3300
+  })
+  trackList.add(track)
+
+  var track=new Track({
+    title:'Kalke',
+    artist:'Maxime Dangles',
+    label:'BREAK NEW SOIL',
+    timeIN:3300,
+    timeOUT:3600
+  })
+
+  trackList.add(track)
+
+  app.trackList=trackList;
+  var timeGroupKeys=Object.keys(trackList.groupBy('timeIN'));
+  var timeGroups=[];
+  _.each(timeGroupKeys,function(item){
+    timeGroups.push(parseInt(item))
+  })
+  app.timeGroups=timeGroups;
+
+
+
+
+//end domready
+});
+
+  </script>
+</div>
+{{> audioPlayerBindings}}
+
+</div>
+{{!-- 
+TO DO: prepopulate chat
+//  oldMessages=[
+// [ 8,{ chat: 'Love this track!!' }, 'Lavada VonRueden' ],
+// [ 7,{ chat: 'nice build' }, 'Allan Grimes' ],
+// [ 6,{ chat: 'u hear that b2b cirez d!!!' }, 'Jude Rodriguez' ],
+// [5, { chat: 'niiiiice' }, 'Selina Stokes' ],
+// [4, { chat: 'dcr!!' }, 'Leann Fadel' ],
+// [3, { chat: 'cant wait for the January show' }, 'Lonzo Cole' ],
+// [2, { chat: 'drumcode!!!' }, 'Candido Morar' ],
+// [1, { chat: 'that kick drum!' }, 'Nicklaus Conn' ]
+//  ]
+// socket.on('prepopulateChat',function(currentMessages){
+//   console.log('cm',currentMessages)
+//   for (var i=0;i<8;i++){
+//   if(currentMessages[i]){
+//       $('.chatText').eq(i).text(currentMessages[i][1].chat)
+//        $('.chatUsername').eq(i).text(currentMessages[i][2]+": ")
+//   }
+// }
+
+// })
+ --}}

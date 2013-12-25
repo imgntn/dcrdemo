@@ -1,0 +1,155 @@
+<script>
+var app={};
+
+var audioPlayer=document.getElementById('audioPlayer');
+
+$('#playButton').click(function(){
+audioPlayer.play()
+})
+
+$('#pauseButton').click(function(){
+audioPlayer.pause()
+})
+
+$('#playButton,#pauseButton').hover(
+	function(){
+		// console.log('in' + $(this))
+	$(this).css({'color':'blue'})
+	},
+	function(){
+			// console.log('out' + $(this))
+	$(this).css({'color':'white'})
+	}
+	)
+
+var currentTrack=0;
+
+audioPlayer.addEventListener('timeupdate',function(){
+var currentTime=audioPlayer.currentTime
+	$('#playTime').text(toHHMMSS(currentTime))
+
+//quick and dirty.  really dirty :(   would be nice to build an admin interface: app.trackList-builder
+
+
+if(currentTime>=app.timeGroups[0]&&currentTime<=app.timeGroups[1]){
+currentTrack=0;
+$('#trackTitle').text(app.trackList.at(currentTrack).get('title'))
+$('#trackArtist').text(app.trackList.at(currentTrack).get('artist'))
+return
+}
+	
+if(currentTime>=app.timeGroups[1]&&currentTime<=app.timeGroups[2]){
+currentTrack=1;
+$('#trackTitle').text(app.trackList.at(currentTrack).get('title'))
+$('#trackArtist').text(app.trackList.at(currentTrack).get('artist'))
+return
+}
+	
+if(currentTime>=app.timeGroups[2]&&currentTime<=app.timeGroups[3]){
+currentTrack=2;
+$('#trackTitle').text(app.trackList.at(currentTrack).get('title'))
+$('#trackArtist').text(app.trackList.at(currentTrack).get('artist'))
+return
+}
+
+if(currentTime>=app.timeGroups[3]&&currentTime<=app.timeGroups[4]){
+currentTrack=3;
+$('#trackTitle').text(app.trackList.at(currentTrack).get('title'))
+$('#trackArtist').text(app.trackList.at(currentTrack).get('artist'))
+return
+}
+
+if(currentTime>=app.timeGroups[4]&&currentTime<=app.timeGroups[5]){
+currentTrack=4;
+$('#trackTitle').text(app.trackList.at(currentTrack).get('title'))
+$('#trackArtist').text(app.trackList.at(currentTrack).get('artist'))
+return
+}
+
+if(currentTime>=app.timeGroups[5]&&currentTime<=app.timeGroups[6]){
+currentTrack=5;
+$('#trackTitle').text(app.trackList.at(currentTrack).get('title'))
+$('#trackArtist').text(app.trackList.at(currentTrack).get('artist'))
+return
+}
+
+if(currentTime>=app.timeGroups[6]&&currentTime<=app.timeGroups[7]){
+currentTrack=6;
+$('#trackTitle').text(app.trackList.at(currentTrack).get('title'))
+$('#trackArtist').text(app.trackList.at(currentTrack).get('artist'))
+return
+}
+
+if(currentTime>=app.timeGroups[7]&&currentTime<=app.timeGroups[8]){
+currentTrack=7;
+$('#trackTitle').text(app.trackList.at(currentTrack).get('title'))
+$('#trackArtist').text(app.trackList.at(currentTrack).get('artist'))
+return
+}
+
+if(currentTime>=app.timeGroups[8]&&currentTime<=app.timeGroups[9]){
+currentTrack=8;
+$('#trackTitle').text(app.trackList.at(currentTrack).get('title'))
+$('#trackArtist').text(app.trackList.at(currentTrack).get('artist'))
+return
+}
+
+if(currentTime>=app.timeGroups[9]&&currentTime<=app.timeGroups[10]){
+currentTrack=9;
+$('#trackTitle').text(app.trackList.at(currentTrack).get('title'))
+$('#trackArtist').text(app.trackList.at(currentTrack).get('artist'))
+return
+}
+
+if(currentTime>=app.timeGroups[10]&&currentTime<=app.timeGroups[11]){
+currentTrack=10;
+$('#trackTitle').text(app.trackList.at(currentTrack).get('title'))
+$('#trackArtist').text(app.trackList.at(currentTrack).get('artist'))
+return
+}
+
+if(currentTime>=app.timeGroups[11]&&currentTime<=app.timeGroups[12]){
+currentTrack=11;
+$('#trackTitle').text(app.trackList.at(currentTrack).get('title'))
+$('#trackArtist').text(app.trackList.at(currentTrack).get('artist'))
+return
+}
+
+if(currentTime>=app.timeGroups[12]){
+currentTrack=12;
+$('#trackTitle').text(app.trackList.at(currentTrack).get('title'))
+$('#trackArtist').text(app.trackList.at(currentTrack).get('artist'))
+return
+}
+	
+
+
+
+
+
+
+
+
+})
+
+$.numberInRange = function(number, lower, upper) {
+    return number > lower && number < upper;
+};
+
+var toHHMMSS = function (number) {
+    var sec_num = parseInt(number, 10); 
+    var hours   = Math.floor(sec_num / 3600);
+    var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+    var seconds = sec_num - (hours * 3600) - (minutes * 60);
+
+    if (hours   < 10) {hours   = "0"+hours;}
+    if (minutes < 10) {minutes = "0"+minutes;}
+    if (seconds < 10) {seconds = "0"+seconds;}
+    var time    = hours+':'+minutes+':'+seconds;
+    return time;
+}
+
+
+
+</script>
+
