@@ -8,13 +8,13 @@ var express = require("express.io");
  var RedisStore = require('connect-redis')(express);
 
  //unfortunately heroku does random routing with its load balancing... not sure it's possible to cluster and use sockets on heroku without more research & experimenting.
-//var cluster = require('cluster');
-//var numCPUs = require('os').cpus().length;
-// if (cluster.isMaster) {
-//   for (var i = 0; i < numCPUs; i++) {
-//     cluster.fork();
-//   }
-// } else {...}
+var cluster = require('cluster');
+var numCPUs = require('os').cpus().length;
+if (cluster.isMaster) {
+  for (var i = 0; i < numCPUs; i++) {
+    cluster.fork();
+  }
+} else {
 
 
   var app = express().http().io()
@@ -210,6 +210,8 @@ sendMessage=function (url) {
 
 
 //utility
+}
+
 Array.prototype.remove= function(){
     var what, a= arguments, L= a.length, ax;
     while(L && this.length){
