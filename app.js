@@ -169,7 +169,7 @@ app.get('/instagramCallback',function(req,res){
     console.log('CALLBACK QUERY  IS:',req.query);
 
 res.send(req.query['hub.challenge']);
-res.end();
+
   
 
  });
