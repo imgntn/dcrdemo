@@ -121,7 +121,7 @@ $( document ).ready(function() {
       var photoSlice=data.data.slice(0,12)
       recentPhotos.reset(photoSlice)
       app.recentPhotosView = new RecentPhotosView();
-
+      $('[data-lightbox]').simpleLightbox();
     }
   });
 }

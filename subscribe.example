@@ -6,24 +6,3 @@
      -F 'callback_url=http://keyara.herokuapp.com/instagramCallback' \
      https://api.instagram.com/v1/subscriptions/
 
-
-     curl -X DELETE https://api.instagram.com/v1/subscriptions?client_secret=38eb39f9081e40a086af6d10d29b4802&id=1&client_id=41255add49bc4d56ba7f62650849da47&object_id=4000035
-
-
-     curl -F 'client_id=41255add49bc4d56ba7f62650849da47' \
-     -F 'client_secret=38eb39f9081e40a086af6d10d29b4802' \
-     -F 'object=tag' \
-     -F 'aspect=media' \
-     -F 'object_id=drumcode' \
-     -F 'callback_url=http://keyara.herokuapp.com/instagramCallback' \
-     https://api.instagram.com/v1/subscriptions/
-
-
-           curl -F 'client_id=41255add49bc4d56ba7f62650849da47' \
-      -F 'client_secret=38eb39f9081e40a086af6d10d29b4802' \
-     -F 'object=tag' \
-     -F 'aspect=media' \
-     -F 'object_id=drumcode' \
-     -F 'distance=100' \
-     -F 'callback_url=http://keyara.herokuapp.com/instagramCallback' \
-           https://api.instagram.com/v1/subscriptions/
