@@ -212,12 +212,12 @@ sendMessage = function(url) {
 
 
 
-//load monitoring libraries
-// if (process.env.NODETIME_ACCOUNT_KEY) {
-//   require('nodetime').profile({
-//     accountKey: process.env.NODETIME_ACCOUNT_KEY,
-//   });
-// }
+load monitoring libraries
+if (process.env.NODETIME_ACCOUNT_KEY) {
+  require('nodetime').profile({
+    accountKey: process.env.NODETIME_ACCOUNT_KEY,
+  });
+}
 //require('newrelic');
 
 
