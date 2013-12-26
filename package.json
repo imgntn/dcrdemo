@@ -21,8 +21,6 @@
     "redis": "~0.9.2",
     "connect-redis": "~1.4.6",
     "mongoose-user": "0.0.1",
-    "instagram-node-lib": "~0.1.1",
-
     "charlatan": "~0.1.8",
     "node-uuid": "~1.4.1",
     "express.io": "~1.1.13"

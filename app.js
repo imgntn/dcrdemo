@@ -13,6 +13,7 @@ var numCPUs = require('os').cpus().length;
 if (cluster.isMaster) {
   for (var i = 0; i < numCPUs; i++) {
     cluster.fork();
+    // console.log('fork'+i)
   }
 } else {
 
@@ -155,22 +156,13 @@ app.io.sockets.emit('prepopulateChat',currentMessages)
 
 //instagram whatnot
 
-Instagram = require('instagram-node-lib');
+// Instagram = require('instagram-node-lib');
 
-Instagram.set('client_id', process.env.INSTAGRAM_CLIENT_ID);
-Instagram.set('client_secret', process.env.INSTAGRAM_CLIENT_SECRET);
-Instagram.set('maxSockets', 5);
-Instagram.set('callback_url', 'http://keyara.herokuapp.com/instagramCallback');
-Instagram.set('redirect_uri', 'http://keyara.herouapp.com/');
-
-app.io.sockets.on('connection', function (socket) {
-  Instagram.tags.recent({ 
-      name: 'drumcode',
-      complete: function(data) {
-        socket.emit('firstShow', { firstShow: data });
-      }
-  });
-});
+// Instagram.set('client_id', process.env.INSTAGRAM_CLIENT_ID);
+// Instagram.set('client_secret', process.env.INSTAGRAM_CLIENT_SECRET);
+// Instagram.set('maxSockets', 5);
+// Instagram.set('callback_url', 'http://drumcode.herokuapp.com/instagramCallback');
+// Instagram.set('redirect_uri', 'http://drumcode.herouapp.com/');
 
 app.get('/instagramCallback',function(req,res){
     console.log('CALLBACK REQUEST IS:',req.url);
@@ -210,8 +202,6 @@ sendMessage=function (url) {
 
 
 //utility
-}
-
 Array.prototype.remove= function(){
     var what, a= arguments, L= a.length, ax;
     while(L && this.length){
@@ -222,5 +212,8 @@ Array.prototype.remove= function(){
     }
     return this;
 }
+}
+
+
 
 
