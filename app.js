@@ -218,7 +218,7 @@ if (process.env.NODETIME_ACCOUNT_KEY) {
     accountKey: process.env.NODETIME_ACCOUNT_KEY,
   });
 }
-//require('newrelic');
+require('newrelic');
 
 
 //utility
