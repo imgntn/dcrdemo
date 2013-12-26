@@ -8,11 +8,11 @@ exports.config = {
   /**
    * Array of application names.
    */
-  app_name : ['keyara'],
+  app_name : ['drumcode'],
   /**
    * Your New Relic license key.
    */
-  license_key : 'f4260b34cd2ff52468dfa953f5adc74d8866fcb1',
+  license_key : 'ae2205a4e8983ddc0b30542f299a704671456b24',
   logging : {
     /**
      * Level at which to log. 'trace' is most useful to New Relic when diagnosing
