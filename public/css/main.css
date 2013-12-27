@@ -71,7 +71,10 @@ border-bottom:1px solid black;
   margin-bottom:7px;
 }
 
-
+#hashtagSlug{
+  margin-left: 10px;
+  margin-bottom: 5px !important;
+}
 .chatdiv{
 position: relative;
 top: 5px;
