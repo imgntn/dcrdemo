@@ -13,7 +13,7 @@
  
      
                <div class="col-md-3 ">
-                     <h3 id="trackTitle" >Drumcode Radio 176</h3>
+                     <h3 id="trackTitle" >Drumcode Radio 178</h3>
         </div>
 
         <div class="col-md-3">
@@ -38,7 +38,7 @@
 </div>
 
 <audio id='audioPlayer'>
-  <source src="https://s3-us-west-1.amazonaws.com/lessthan3/music/DCR176.mp3">
+  <source src="https://s3-us-west-1.amazonaws.com/lessthan3/music/dcr178.mp3">
   </audio>
 
 </div>
@@ -246,9 +246,9 @@ socket.on('userCount', function(data) {
   var trackList=new TrackList();
 
   var track=new Track({
-    title:'AWG50',
-    artist:'Raphael Dincsoy & Pierre Deutschmann',
-    label:'H-PRODUCTIONS',
+    title:'Silk Road',
+    artist:'Harvey McKay',
+    label:'DRUMCODE',
     timeIN:30,
     timeOUT:300
   })
@@ -256,29 +256,27 @@ socket.on('userCount', function(data) {
   trackList.add(track)
 
   var track=new Track({
-    title:'Falling Down',
-    artist:'Andrei Morant',
-    label:'COPE',
+    title:'I Believe',
+    artist:'Luigi Madonna',
+    label:'DRUMCODE',
     timeIN:300,
     timeOUT:600,
   })
   trackList.add(track)
 
   var track=new Track({
-    title:'Accelerate',
-    artist:'Frankyeffe',
-    remix:'Ant Prescott',
-    label:'COPE',
+    title:'Fight Club',
+    artist:'Bart Skils',
+    label:'DRUMCODE',
     timeIN:600,
     timeOUT:900
   })
   trackList.add(track)
 
   var track=new Track({
-    title:'Paid Out',
-    artist:'Gary Beck',
-    remix:'Mike Dehnert',
-    label:'BEK',
+    title:'Lost',
+    artist:'Harvey McKay',
+    label:'DRUMCODE',
     timeIN:900,
     timeOUT:1200
   })
@@ -286,74 +284,92 @@ socket.on('userCount', function(data) {
 
 
   var track=new Track({
-    title:'Paranco',
-    artist:'Alex Dolby ',
-    label:'AFFEKT',
+    title:'Take Hold',
+    artist:'Nicole Moudaber & Adam Beyer',
+    label:'DRUMCODE',
     timeIN:1200,
     timeOUT:1500
   })
   trackList.add(track)
 
   var track=new Track({
-    title:'Companion',
-    artist:'Andrei Morant',
-    label:'SCOPE',
+    title:'Run Baby Run',
+    artist:'Paul Ritch',
+    label:'DRUMCODE',
     timeIN:1500,
     timeOUT:1800
   })
   trackList.add(track)
 
   var track=new Track({
-    title:'Companion',
-    artist:'Stefano Noferini',
-    label:'DEEPERFEKT',
+    title:'Atonal Dub',
+    artist:'Petter B',
+    label:'DRUMCODE',
     timeIN:1800,
     timeOUT:2100
   })
   trackList.add(track)
 
   var track=new Track({
-    title:'Thoughtcrime',
-    artist:'Rodhad',
-    label:'DYSTOPIAN',
+    title:'Lexicon',
+    artist:'Alan Fitzpatrick',
+    label:'DRUMCODE',
     timeIN:2100,
     timeOUT:2400
   })
   trackList.add(track)
 
   var track=new Track({
-    title:'Last Anthem',
-    artist:'Conforce',
-    label:'DELSIN',
+    title:'Smoke & Mirrors',
+    artist:'Ben Sims',
+    label:'DRUMCODE',
+    remix:'Jerome Sydenham',
     timeIN:2400,
     timeOUT:2700
   })
   trackList.add(track)
 
   var track=new Track({
-    title:'Braintrapped',
-    artist:'On/Off',
-    label:'ONOFFICIAL',
+    title:'Irrational Numbers',
+    artist:'Slam',
+    label:'DRUMCODE',
     timeIN:2700,
     timeOUT:3000
   })
   trackList.add(track)
 
   var track=new Track({
-    title:'Acid Dik',
-    artist:'Mark Broom',
-    label:'POWER VACUUM',
+    title:'Awake',
+    artist:'Joseph Capriati',
+    label:'DRUMCODE',
     timeIN:3000,
     timeOUT:3300
   })
   trackList.add(track)
 
   var track=new Track({
-    title:'Kalke',
-    artist:'Maxime Dangles',
-    label:'BREAK NEW SOIL',
+    title:'Unanswered Question',
+    artist:'Adam Beyer & Ida Engberg',
+    remix:'Julian Jeweil',
+    label:'DRUMCODE',
     timeIN:3300,
     timeOUT:3600
+  })
+
+   var track=new Track({
+    title:'Black Leather',
+    artist:'Sam Paganini',
+    label:'DRUMCODE',
+    timeIN:3600,
+    timeOUT:3900
+  })
+
+    var track=new Track({
+    title:'The Tetra',
+    artist:'Alan Fitzpatrick',
+    label:'DRUMCODE',
+    timeIN:3900,
+    timeOUT:4200
   })
 
   trackList.add(track)
