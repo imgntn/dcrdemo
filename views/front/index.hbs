@@ -13,7 +13,7 @@
  
      
                <div class="col-md-3 ">
-                     <h3 id="trackTitle" >Drumcode Radio 178</h3>
+                     <h3 id="trackTitle" >Drumcode Radio 190</h3>
         </div>
 
         <div class="col-md-3">
@@ -38,7 +38,7 @@
 </div>
 
 <audio id='audioPlayer'>
-  <source src="https://s3-us-west-1.amazonaws.com/lessthan3/music/dcr178.mp3">
+  <source src="https://api.soundcloud.com/tracks/141672277?client_id=418652687694eb81a4bb55fbe7e236b8">
   </audio>
 
 </div>
@@ -148,7 +148,6 @@ var RecentPhotosView=Backbone.View.extend({
     this.render();
   },
   render:function(){
-    var js = recentPhotos.toJSON();
 
     var html = Handlebars.templates["clientSide"](this.items);
     $(this.el).html(html);
