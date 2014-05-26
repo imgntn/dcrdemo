@@ -1,1 +1,2 @@
-This is an app by James B. Pollack, 2013
+npm install
+node app.js
