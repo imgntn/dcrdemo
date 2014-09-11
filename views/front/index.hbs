@@ -119,8 +119,7 @@ $( document ).ready(function() {
     type: "GET",
     dataType: "jsonp",
     cache: false,
-    url: "https://api.instagram.com/v1/tags/"+whichtag+"/media/recent?client_id=08c11943db68468cb7325574629d5e74
-",
+    url: "https://api.instagram.com/v1/tags/"+whichtag+"/media/recent?client_id=08c11943db68468cb7325574629d5e74",
     success: function(data) {
 
       var photoSlice=data.data.slice(0,12)
