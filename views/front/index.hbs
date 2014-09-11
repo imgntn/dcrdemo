@@ -1,3 +1,4 @@
+
   <nav class="navbar  navbar-fixed-top" role="navigation">
 
     <div>
@@ -118,7 +119,8 @@ $( document ).ready(function() {
     type: "GET",
     dataType: "jsonp",
     cache: false,
-    url: "https://api.instagram.com/v1/tags/"+whichtag+"/media/recent?client_id=1b7d22ce0d7440a0bd6c62b3294083b0",
+    url: "https://api.instagram.com/v1/tags/"+whichtag+"/media/recent?client_id=08c11943db68468cb7325574629d5e74
+",
     success: function(data) {
 
       var photoSlice=data.data.slice(0,12)
@@ -237,7 +239,7 @@ socket.on('userCount', function(data) {
 
 
 //change track headings...
-
+//On my Drumcode Live show this week I have invited Dustin Zahn to take over with an hour from his show at Output, NYC. Expect to hear records from Trikk, Alan Fitzpatrick and Dustin himself. 01. Phil Keiran - Getting Away - Hotflush 02. Trikk - Deeper Point - Truesoul 03. Deepchild - Haitian Rum Runner - Face To Face 04. Jeff Rushin - Infiltrate - On Off 05. Radio Slave - No Sleep - Nonplus 06. Len Faki & Markus Suckut - Skulls 2 Dub - Figure 07. Philippe Petit - Venus - Eartoground 08. Dustin Zahn - Breaking the Cycle (Never Say Never Edit) - Promo 09. Modwheel - Moraccan Jack (Kyle Geiger Edit) - Promo 10. Regal - Chaos - Promo 11. Emmanuel - Nuke - Enemy 12. Dustin Zahn - Jumping Off - Drumcode 13. Sasha Carassi - Black Propaganda (Unreleased Mix) - Promo 14. Emmanuel - Apnø - Enemy 15. Paul Mac - Grind Returns (Ritzi Lee Remix) - Hardgroove 16. Logotech - Sub Lunar Phase II - Spectral Rebel
   var TrackList=Backbone.Collection.extend({
     model:Track
   })
